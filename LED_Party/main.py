@@ -17,7 +17,7 @@ colourList = [0xB0171F,0xDC143C,0xFFB6C1,0xFFAEB9,0xEEA2AD,0xCD8C95,0x8B5F65,0xF
 n = Neopix()
 ugfx.init()
 ugfx.clear()
-ugfx.text(5, 5, "PRESS B TO PARTY, B TO QUIT", ugfx.BLACK)
+ugfx.text(5, 5, "PRESS B TO PARTY, MENU TO QUIT, A TO LOOP", ugfx.BLACK)
 
 
 def ledChange():
@@ -42,6 +42,11 @@ def ledChange():
 def badgeQuit():
     restart_to_default() # call on exit of main.py'''
 
+state = False
+
+def toggleMode():
+    global state
+    state = not state
     
 
 Buttons.enable_interrupt(
@@ -51,8 +56,19 @@ Buttons.enable_interrupt(
     on_release=False);
 
 Buttons.enable_interrupt(
-    Buttons.BTN_A,
+    Buttons.BTN_MENU,
     lambda button_id:badgeQuit(),
     on_press=True,
     on_release=False);
 
+
+Buttons.enable_interrupt(
+    Buttons.BTN_A,
+    lambda button_id:toggleMode(),
+    on_press=True,
+    on_release=False);
+
+while True:
+    if state:
+        ledChange()
+    time.sleep(0.75)
