@@ -35,7 +35,7 @@ ircchan = "#emfcamp"
 
 addr = socket.getaddrinfo("chat.freenode.com", 6667)
 
-conn = socket.socket()
+conn = socket.socket(family=socket.AF_INET, type=socket.SOCK_STREAM, proto=0)
 conn.connect(addr)
 
 conn.send("PASS seecretpassword\r\n")
