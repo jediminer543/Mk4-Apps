@@ -46,7 +46,7 @@ with WaitingMessage(title="IRC", text="Please wait...") as message:
 
     conn.send("JOIN {}\r\n".format(ircchan))
 
-conn.setTimeout(None)
+conn.setBlocking(False)
 
 ugfx.clear()
 notice("Connected!")
