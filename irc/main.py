@@ -26,7 +26,7 @@ nick = prompt_text("Nickname (enter or add number)", init_text="emfbadge")
 
 ugfx.clear()
 
-with WaitingMessage(title=title, text="Please wait...") as message:
+with WaitingMessage(title="IRC", text="Please wait...") as message:
     remoteaddr = "chat.freenode.net"
     remoteport = 6697
 
