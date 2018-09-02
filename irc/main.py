@@ -26,25 +26,24 @@ nick = prompt_text("Nickname (enter or add number)", init_text="emfbadge")
 
 ugfx.clear()
 
-notice("Connecting...")
+with WaitingMessage(title=title, text="Please wait...") as message:
+    remoteaddr = "chat.freenode.net"
+    remoteport = 6697
 
-remoteaddr = "chat.freenode.net"
-remoteport = 6697
+    ircchan = "#emfcamp"
 
-ircchan = "#emfcamp"
+    addr = socket.getaddrinfo("chat.freenode.com", 6667)
 
-addr = socket.getaddrinfo("chat.freenode.com", 6667)
+    conn = socket.socket(family=socket.AF_INET, type=socket.SOCK_STREAM, proto=0)
+    conn.connect(addr)
 
-conn = socket.socket(family=socket.AF_INET, type=socket.SOCK_STREAM, proto=0)
-conn.connect(addr)
+    conn.send("PASS seecretpassword\r\n")
+    conn.send("NICK {}\r\n".format(nick))
+    conn.send("USER {} 0 * :An EMF camp Badge\r\n".format(nick))
 
-conn.send("PASS seecretpassword\r\n")
-conn.send("NICK {}\r\n".format(nick))
-conn.send("USER {} 0 * :An EMF camp Badge\r\n".format(nick))
+    conn.send("JOIN {}\r\n".format(ircchan))
 
-conn.send("JOIN {}\r\n".format(ircchan))
-
-conn.setTimeout(None)
+    conn.setTimeout(None)
 
 ugfx.clear()
 notice("Connected!")
