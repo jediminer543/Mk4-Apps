@@ -3,7 +3,7 @@
 ___name___         = "IRC"
 ___license___      = "WTFPL"
 ___dependencies___ = ["app", "dialogs", "ugfx_helper", "buttons"]
-___categories___   = ["phone"]
+___categories___   = ["EMF"]
 ___bootstrapped___ = True
 
 
@@ -35,7 +35,7 @@ ircchan = "#emfcamp"
 
 addr = socket.getaddrinfo("chat.freenode.com", 6667)
 
-conn = socket.connect()
+conn = socket.socket()
 conn.connect(addr)
 
 conn.send("PASS seecretpassword\r\n")
