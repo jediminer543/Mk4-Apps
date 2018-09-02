@@ -13,6 +13,7 @@ import ugfx
 import ugfx_helper
 import socket
 import buttons
+import wifi
 from tilda import Buttons
 
 ugfx_helper.init()
