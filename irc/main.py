@@ -33,7 +33,7 @@ remoteport = 6697
 
 ircchan = "#emfcamp"
 
-addr = socket.getaddrinfo("chat.freenode.com", 6667)
+addr = socket.getaddrinfo("chat.freenode.com", 6667)[0][-1]
 
 
 with WaitingMessage(title="IRC", text="Please wait...") as message:
