@@ -26,14 +26,17 @@ nick = prompt_text("Nickname (enter or add number)", init_text="emfbadge")
 
 ugfx.clear()
 
+conn = None
+
+remoteaddr = "chat.freenode.net"
+remoteport = 6697
+
+ircchan = "#emfcamp"
+
+addr = socket.getaddrinfo("chat.freenode.com", 6667)
+
+
 with WaitingMessage(title="IRC", text="Please wait...") as message:
-    remoteaddr = "chat.freenode.net"
-    remoteport = 6697
-
-    ircchan = "#emfcamp"
-
-    addr = socket.getaddrinfo("chat.freenode.com", 6667)
-
     conn = socket.socket(family=socket.AF_INET, type=socket.SOCK_STREAM, proto=0)
     conn.connect(addr)
 
@@ -43,7 +46,7 @@ with WaitingMessage(title="IRC", text="Please wait...") as message:
 
     conn.send("JOIN {}\r\n".format(ircchan))
 
-    conn.setTimeout(None)
+conn.setTimeout(None)
 
 ugfx.clear()
 notice("Connected!")
