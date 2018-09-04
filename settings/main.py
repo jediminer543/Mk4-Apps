@@ -28,7 +28,7 @@ def settings_startup_app(state):
     print(apps)
     selection = prompt_option([{"title": a.title, "app": a} for a in apps], text="Select App:", none_text="Back", title="Set startup app")
     if selection:
-       app.write_launch_file(app.name, "default_app.txt")
+       app.write_launch_file(selection["app"].name, "default_app.txt")
 
 def settings_wifi(state):
     wifi.choose_wifi()
@@ -36,6 +36,7 @@ def settings_wifi(state):
 def settings_main(state):
     return selection({
         "Homescreen Name": change_database_string("Set your name", "homescreen.name"),
+        "Homescreen Callsign": change_database_string("Set your callsign", "homescreen.callsign"),
         "Wifi": settings_wifi,
         "Startup app": settings_startup_app,
         "Badge Store": settings_badge_store

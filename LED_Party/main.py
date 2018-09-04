@@ -47,7 +47,7 @@ state = False
 def toggleMode():
     global state
     state = not state
-    
+
 
 Buttons.enable_interrupt(
     Buttons.BTN_B,
